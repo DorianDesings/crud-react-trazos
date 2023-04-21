@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react';
 import User from './components/user/User';
-import { METHODS } from './constants/methods';
-import { fetchData } from './utils/fetchData';
-
-const getAllUsers = async setUsers => {
-	const data = await fetchData('http://127.0.0.1:3000/api/users', {
-		method: METHODS.GET
-	});
-	setUsers(data);
-};
+import { getAllUsers } from './utils/api';
 
 const App = () => {
 	const [users, setUsers] = useState([]);

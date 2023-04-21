@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { METHODS } from '../../constants/methods';
-import { fetchData } from '../../utils/fetchData';
+import { deleteUser, getUserById, updateUser } from '../../utils/api';
 
 const User = ({ userId, userName }) => {
 	const [isEditing, setIsEditing] = useState(false);
@@ -23,40 +22,6 @@ const User = ({ userId, userName }) => {
 			<button onClick={() => deleteUser(userId)}>Delete User</button>
 		</div>
 	);
-};
-
-const getUserById = async userId => {
-	const data = await fetchData(
-		`http://127.0.0.1:3000/api/users/${userId}`,
-		METHODS.GET
-	);
-
-	console.log(data);
-};
-
-const updateUser = async (isEditing, setIsEditing, name, userId) => {
-	if (isEditing) {
-		const data = await fetchData(`http://127.0.0.1:3000/api/users/${userId}`, {
-			method: METHODS.PATCH,
-			body: JSON.stringify({ name }),
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			}
-		});
-
-		console.log(data);
-	}
-
-	setIsEditing(!isEditing);
-};
-
-const deleteUser = async userId => {
-	const data = await fetchData(`http://127.0.0.1:3000/api/users/${userId}`, {
-		method: METHODS.DELETE
-	});
-
-	console.log(data);
 };
 
 export default User;
