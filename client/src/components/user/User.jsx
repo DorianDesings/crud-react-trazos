@@ -35,7 +35,6 @@ const getUserById = async userId => {
 };
 
 const updateUser = async (isEditing, setIsEditing, name, userId) => {
-	console.log(name);
 	if (isEditing) {
 		const data = await fetchData(`http://127.0.0.1:3000/api/users/${userId}`, {
 			method: METHODS.PATCH,
