@@ -9,10 +9,22 @@ export const getAllUsers = async setUsers => {
 };
 
 export const getUserById = async userId => {
-	const data = await fetchData(
-		`http://127.0.0.1:3000/api/users/${userId}`,
-		METHODS.GET
-	);
+	const data = await fetchData(`http://127.0.0.1:3000/api/users/${userId}`, {
+		method: METHODS.GET
+	});
+
+	console.log(data);
+};
+
+export const createUser = async newUser => {
+	const data = await fetchData(`http://127.0.0.1:3000/api/users/`, {
+		method: METHODS.POST,
+		body: JSON.stringify(newUser),
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		}
+	});
 
 	console.log(data);
 };
